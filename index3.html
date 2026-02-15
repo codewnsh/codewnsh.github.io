@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Cards - Divine Mode</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  height:100vh;
+  font-family:'Segoe UI',cursive;
+  background:linear-gradient(135deg,#1b3c73,#4fa3ff,#0a1f44,#7ec8ff);
+  background-size:400% 400%;
+  animation:bgMove 30s ease infinite;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+  color:white;
+}
+@keyframes bgMove{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+.petal{position:absolute;top:-50px;width:12px;height:12px;background:rgba(173,216,230,0.8);border-radius:50%;animation:fall linear infinite;}
+@keyframes fall{0%{transform:translateY(0) rotate(0deg);}100%{transform:translateY(110vh) rotate(360deg);}}
+h2{margin-top:20px;color:white;text-shadow:0 0 30px white;font-size:1.8em;}
+.cards{display:flex;justify-content:center;gap:20px;margin-top:40px;flex-wrap:wrap;}
+.card{width:150px;height:220px;background:linear-gradient(135deg,#7ec8ff,#4fa3ff);border-radius:20px;box-shadow:0 0 30px rgba(0,0,0,0.6);display:flex;justify-content:center;align-items:center;color:white;font-weight:bold;font-size:1em;cursor:pointer;transition:transform .3s,box-shadow .3s;position:relative;text-align:center;}
+.card:hover{transform:scale(1.1);box-shadow:0 0 50px rgba(79,163,255,1);}
+.card.locked{filter:grayscale(100%);opacity:0.4;pointer-events:none;}
+.arrow{position:absolute;top:-25px;font-size:2em;animation:bounce 1s infinite;}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(10px);}}
+.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);display:none;justify-content:center;align-items:center;z-index:100;flex-direction:column;color:white;padding:20px;}
+.modal iframe{width:80%;height:40%;border:none;border-radius:15px;}
+.modal button{margin-top:20px;padding:10px 25px;border:none;border-radius:40px;background:white;color:#1b3c73;font-weight:bold;cursor:pointer;box-shadow:0 0 20px white;}
+.envelope{width:120px;height:80px;background:#4fa3ff;border-radius:10px;position:relative;cursor:pointer;box-shadow:0 0 25px rgba(79,163,255,1);}
+.envelope::before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:#7ec8ff;clip-path:polygon(50% 0, 0% 50%, 100% 50%);transition:.5s;}
+.envelope.open::before{top:-40px;opacity:0;}
+.messageBox{display:none;width:300px;max-height:300px;overflow-y:auto;background:linear-gradient(180deg,#ffffff,#edf4ff);padding:20px;border-radius:15px;margin-top:20px;box-shadow:0 0 30px rgba(0,0,0,0.5);color:black;}
+.close-book{position:fixed;bottom:10px;left:10px;padding:8px 18px;border:none;border-radius:30px;background:white;color:#1b3c73;font-weight:bold;cursor:pointer;box-shadow:0 0 20px white;display:none;z-index:100;}
+</style>
+</head>
+<body>
+
+<!-- PETALS -->
+<script>
+for(let i=0;i<25;i++){
+  let petal=document.createElement("div");
+  petal.classList.add("petal");
+  petal.style.left=Math.random()*100+"vw";
+  petal.style.animationDuration=(Math.random()*10+10)+"s";
+  petal.style.opacity=Math.random();
+  document.body.appendChild(petal);
+}
+</script>
+
+<h2>CHOOSE A CARD</h2>
+<div class="cards">
+  <div class="card" id="card1">Music Card
+    <div class="arrow">&#8595;</div>
+  </div>
+  <div class="card locked" id="card2">Envelope Letter</div>
+</div>
+
+<!-- MUSIC MODAL -->
+<div class="modal" id="musicModal">
+  <!-- Official Sparks by Coldplay -->
+  <iframe src="https://www.youtube.com/embed/jx-K3Il3s_o?autoplay=1"
+    allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  <button onclick="closeMusic()">GO BACK</button>
+</div>
+
+<!-- ENVELOPE MESSAGE -->
+<div class="messageBox" id="messageBox">
+  <p> HAPPY BIRTHDAY SHONGET💙<br>
+      by, we’ve had our moments and our own little story, and I’ll always remember that. I hope your 18th year is full of happiness, new friends, and everything you’ve been dreaming of. You deserve all the best, always.
+      
+      No matter where life takes you, I’ll always wish the best for you—and I hope this year brings moments that make you laugh, moments that make you proud, and memories that stay with you forever.
+      .<br>hehe i hope you appreciate it, hbu ulit!!😘</p>
+</div>
+
+<button class="close-book" id="closeBookBtn" onclick="backToStart()">CLOSE THE BOOK</button>
+
+<script>
+let card1=document.getElementById("card1");
+let card2=document.getElementById("card2");
+let musicModal=document.getElementById("musicModal");
+let envelope=document.createElement("div");
+envelope.classList.add("envelope");
+card2.appendChild(envelope);
+let messageBox=document.getElementById("messageBox");
+let closeBookBtn=document.getElementById("closeBookBtn");
+
+/* CARD 1 MUSIC */
+card1.onclick=()=>{
+  musicModal.style.display="flex";
+  card2.classList.remove("locked");
+}
+function closeMusic(){
+  musicModal.style.display="none";
+}
+
+/* ENVELOPE CARD */
+envelope.onclick=()=>{
+  envelope.classList.toggle("open");
+  messageBox.style.display = envelope.classList.contains("open") ? "block" : "none";
+  closeBookBtn.style.display = envelope.classList.contains("open") ? "block" : "none";
+}
+
+/* CLOSE BOOK */
+function backToStart(){
+  window.location.href='index.html';
+}
+</script>
+
+</body>
+</html>

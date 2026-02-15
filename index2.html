@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book of Memories</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:'Segoe UI',cursive;
+background:radial-gradient(circle at center,#1b3c73,#0a1f44 75%);
+overflow:hidden;
+color:white;
+}
+
+/* ✨ Stars */
+.star{position:absolute;width:3px;height:3px;background:white;border-radius:50%;animation:twinkle 2s infinite alternate;}
+@keyframes twinkle{from{opacity:0.2;}to{opacity:1;}}
+
+/* 🌸 Petals */
+.petal{position:absolute;top:-50px;width:12px;height:12px;background:rgba(173,216,230,0.7);border-radius:50%;animation:fall linear infinite;}
+@keyframes fall{0%{transform:translateY(0) rotate(0deg);}100%{transform:translateY(110vh) rotate(360deg);}}
+
+/* 📖 BOOK CONTAINER */
+.book{width:92%;max-width:450px;height:600px;perspective:4000px;position:relative;border-radius:25px;box-shadow:0 40px 100px rgba(0,0,0,0.8);}
+
+/* 📘 COVER */
+.cover{position:absolute;width:100%;height:100%;background:linear-gradient(135deg,#7ec8ff,#4fa3ff);border-radius:25px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;transform-origin:left;transition:2.2s cubic-bezier(.77,0,.18,1);box-shadow:0 40px 120px rgba(0,0,0,0.9);z-index:5;}
+.cover h2{font-size:2em;text-shadow:0 0 40px white;margin-bottom:15px;animation:glow 2s infinite alternate;}
+@keyframes glow{from{text-shadow:0 0 20px white;}to{text-shadow:0 0 50px white;}
+}
+.cover .btn-group{display:flex;justify-content:space-between;width:60%;}
+.cover button{margin:8px;padding:12px 28px;border:none;border-radius:50px;background:white;color:#1b3c73;font-weight:bold;cursor:pointer;box-shadow:0 0 30px white;transition:0.4s;}
+.cover button:hover{transform:scale(1.1);box-shadow:0 0 60px white;}
+
+/* 📄 PAGE */
+.page{position:absolute;width:100%;height:100%;background:linear-gradient(180deg,#0a1f44,#1b3c73);border-radius:25px;padding:25px;display:none;overflow-y:auto;opacity:0;transition:opacity 1.5s ease;}
+.page.show{display:block;opacity:1;}
+.page::-webkit-scrollbar{width:0;}
+.page img{width:90%;border-radius:18px;margin:25px auto;display:block;box-shadow:0 15px 35px rgba(0,0,0,0.6);transition:0.6s;}
+.page img:hover{transform:scale(1.05);box-shadow:0 20px 45px rgba(126,200,255,0.6);}
+.message{text-align:center;color:#cce0ff;margin:15px 0;line-height:1.6em;}
+
+/* 🎵 Music Card */
+.music-card{background:rgba(0,0,0,0.6);padding:20px;border-radius:20px;text-align:center;margin-bottom:25px;box-shadow:0 0 30px rgba(126,200,255,0.6);}
+.music-card h3{margin-bottom:10px;color:#7ec8ff;}
+.play-label{color:#cce0ff;font-weight:bold;margin-bottom:10px;}
+
+/* 🌟 Proceed Button Glow Animation */
+.inside-btn{margin:50px auto;padding:16px 30px;border:none;border-radius:60px;background:linear-gradient(135deg,#4fa3ff,#7ec8ff);color:white;font-weight:bold;cursor:pointer;display:block;opacity:0;box-shadow:0 0 0 rgba(79,163,255,0);transition:0.8s;}
+.inside-btn.visible{opacity:1;box-shadow:0 0 40px rgba(79,163,255,1);transform:scale(1.08);}
+.inside-btn:hover{transform:scale(1.15);box-shadow:0 0 70px rgba(79,163,255,1);}
+</style>
+</head>
+<body>
+
+<div class="book">
+
+<div class="cover" id="cover">
+<h2>HAPPY 18th Birthday</h2>
+<p>DO YOU WANT TO OPEN IT?</p>
+<div class="btn-group">
+<button onclick="openBook()">YES</button>
+<button onclick="openBook()">OF COURSE</button>
+</div>
+</div>
+
+<div class="page" id="page1">
+
+<div class="music-card">
+<div class="play-label">PLAY MO BY</div>
+<h3>🎵 The Only Exception – Paramore</h3>
+<iframe id="ytPlayer" width="250" height="200"
+src="https://www.youtube.com/embed/7q75-aDZMwE?autoplay=1&loop=1&playlist=7q75-aDZMwE"
+frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+</iframe>
+</div>
+
+<img src="https://weary-sapphire-1qqrfxzjn6.edgeone.app/Messenger_creation_5AD58BA4-E3FF-43A4-9022-3D4C0920A6C2.jpeg">
+<img src="https://intense-crimson-djco5mrhni.edgeone.app/Messenger_creation_D6FBAA36-5359-407B-92BD-FC47F57D744D.png">
+<img src="https://rising-teal-w2bnbq7f9l.edgeone.app/received_954617543485326.jpeg">
+<img src="https://genetic-cyan-qfg3ywudpq.edgeone.app/IMG_20260208_084015_332.jpg">
+<img src="https://low-salmon-xmfoumfklc.edgeone.app/received_24022947507305118.jpeg">
+<img src="https://nearby-blue-bvhyzehqwo.edgeone.app/IMG_20250306_093941.jpg">
+
+<img src="https://tricky-white-m0qprtwmin.edgeone.app/IMG_20250321_155156.jpg">
+
+<div class="message">
+pa cute yarn?😆
+</div>
+
+<button class="inside-btn" onclick="location.href='index3.html'">
+Proceed ➜
+</button>
+</div>
+</div>
+
+<script>
+// ✨ Stars
+for(let i=0;i<70;i++){
+let star=document.createElement("div");
+star.className="star";
+star.style.top=Math.random()*100+"vh";
+star.style.left=Math.random()*100+"vw";
+star.style.animationDuration=(Math.random()*2+1)+"s";
+document.body.appendChild(star);
+}
+
+// 🌸 Petals
+for(let i=0;i<30;i++){
+let petal=document.createElement("div");
+petal.className="petal";
+petal.style.left=Math.random()*100+"vw";
+petal.style.animationDuration=(Math.random()*15+10)+"s";
+petal.style.opacity=Math.random()*0.6+0.4;
+document.body.appendChild(petal);
+}
+
+// 📖 Open book animation
+function openBook(){
+  let cover=document.getElementById("cover");
+  cover.style.transform="rotateY(-180deg)";
+  setTimeout(()=>{
+    cover.style.display="none";
+    let page=document.getElementById("page1");
+    page.classList.add("show");
+
+    // Start auto scroll immediately
+    startScrollWithMusic(page);
+  },2000);
+}
+
+// 🌟 Auto scroll synced with music
+function startScrollWithMusic(el){
+  const totalScroll = el.scrollHeight - el.clientHeight;
+  const duration = 180000; // faster 3 min scroll
+  const start = performance.now();
+  const btn = el.querySelector(".inside-btn");
+
+  function scrollStep(now){
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    el.scrollTop = totalScroll * progress;
+
+    // Gradually reveal proceed button
+    btn.style.opacity = progress;
+    
+    if(progress < 1){
+      requestAnimationFrame(scrollStep);
+    } else {
+      btn.classList.add("visible");
+    }
+  }
+  requestAnimationFrame(scrollStep);
+}
+</script>
+
+</body>
+</html>
